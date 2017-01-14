@@ -130,7 +130,7 @@ force_calc(bool st_clc)
                     {
                         jtype=type[jc_dim];
                         
-                        if(rsq>cut_sq[itype][jtype])
+                        if(rsq>[itype][jtype])
                             continue;
                         
                         type0 alpha_ij=sqrt(x[3*iatm+ic_dim+3]*x[3*iatm+ic_dim+3]+x[3*jatm+jc_dim+3]*x[3*jatm+jc_dim+3]);
@@ -792,7 +792,7 @@ void ForceField_eam_dmd::read_file(char* file_name)
             type0 tmp=sqrt(eam_reader->cut_sq[COMP(itype,jtype)]);
             cut_max=MAX(cut_max,tmp);
             cut[itype][jtype]=tmp;
-            cut_sq[itype][jtype]=(tmp+xi[no_i-1]*alpha_max)*(tmp+xi[no_i-1]*alpha_max);
+            cut_sq[itype][jtype]=tmp*tmp;
         }
     
     type0 mod_rc=cut_max+xi[no_i-1]*alpha_max;
